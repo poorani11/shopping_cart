@@ -7,7 +7,7 @@ checkout.config(['$routeProvider', function($routeProvider) {
         templateUrl: 'public/checkout/checkout.html',
         controller: 'CheckoutCtrl'
     });
-}])
+}]);
  
 checkout.controller('CheckoutCtrl', ['$scope', function($scope) {
     
