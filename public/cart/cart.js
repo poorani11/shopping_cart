@@ -8,6 +8,25 @@ cart.config(['$routeProvider', function($routeProvider) {
     controller: 'CartCtrl'
   });
 }]);
+
+cart.directive('checkList', function() {
+    return {
+        restrict: 'E',
+        template: function(elem, attrs) {
+            return '<div class="panel-body">\
+                    <div class="radio">\
+                        <label><input type="radio">Option1</label>\
+                    </div>\
+            <div class="radio">\
+                        <label><input type="radio">Option2</label>\
+                    </div>\
+            <div class="radio">\
+                        <label><input type="radio">Option3</label>\
+                    </div>\
+                </div>'
+        }
+    };
+});
  
 cart.controller('CartCtrl', ['$scope',function($scope) {
     $scope.shopData = [
