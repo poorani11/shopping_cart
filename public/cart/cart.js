@@ -1,14 +1,14 @@
 'use strict';
  
-angular.module('cart', ['ngRoute'])
+var cart = angular.module('cart', ['ngRoute'])
  
-.config(['$routeProvider', function($routeProvider) {
+cart.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/cart', {
     templateUrl: 'public/cart/cart.html',
     controller: 'CartCtrl'
   });
 }])
  
-.controller('CartCtrl', [function() {
+cart.controller('CartCtrl', [function() {
      
 }]);

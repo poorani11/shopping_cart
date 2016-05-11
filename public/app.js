@@ -1,11 +1,13 @@
 'use strict';
  
  
-angular.module('shoppingCart', [
+var shoppingCart = angular.module('shoppingCart', [
     'ngRoute',
-    'cart'
-]).
-config(['$routeProvider', function($routeProvider) {
+    'cart',
+    'checkout'
+])
+
+shoppingCart.config(['$routeProvider', function($routeProvider) {
     $routeProvider.otherwise({
         redirectTo: '/cart'
     });
