@@ -8,7 +8,29 @@ checkout.config(['$routeProvider', function($routeProvider) {
         controller: 'CheckoutCtrl'
     });
 }]);
- 
-checkout.controller('CheckoutCtrl', ['$scope', function($scope) {
+
+ checkout.service('CommonProp', function() {
+    var Items = '';
+    var Total = 0;
+  
+    return {
+        getItems: function() {
+            return Items;
+        },
+        setItem: function(value) {
+            Items = value;
+        },
+        getTotal: function(){
+            return Total;
+        },
+        setTotal: function(value){
+            Total = value;
+        }
+    };
+});
+
+checkout.controller('CheckoutCtrl', ['$scope','CommonProp', function($scope,CommonProp) {
+    $scope.items = CommonProp.getItems();   
+    $scope.total = CommonProp.getTotal();
     
 }]);

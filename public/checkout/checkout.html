@@ -4,32 +4,24 @@
             <h3>Quotation</h3>
         </div>
  
-        <table class="table">
-            <tr>
-                <td>
-                    CPU
-                </td>
-                <td>
-                    Rs. 20000
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Hard Disk
-                </td>
-                <td>
-                    Rs. 5000
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <b>Total:</b>
-                </td>
-                <td>
-                    <b>Rs. 25000</b>
-                </td>
-            </tr>
-        </table>
+<table class="table">
+    <tr ng-repeat="i in items">
+        <td>
+            {{i.item}}
+        </td>
+        <td>
+            Rs. {{i.selected}}
+        </td>
+    </tr>
+    <tr>
+    <td>
+        <b>Total:</b>
+    </td>
+    <td>
+        <b>Rs. {{total}}</b>
+    </td>
+</tr>
+</table>
  
  
     </div>

@@ -47,8 +47,29 @@ cart.directive('getScroll', function($window) {
     };
 });
 
+//SERVICES
+cart.service('CommonProp', function() {
+    var Items = '';
+    var Total = 0;
+  
+    return {
+        getItems: function() {
+            return Items;
+        },
+        setItem: function(value) {
+            Items = value;
+        },
+        getTotal: function(){
+            return Total;
+        },
+        setTotal: function(value){
+            Total = value;
+        }
+    };
+});
+
 //CONTROLLERS 
-cart.controller('CartCtrl', ['$scope',function($scope) {
+cart.controller('CartCtrl', ['$scope','CommonProp',function($scope,CommonProp) {
     $scope.shopData = [
         {'item':'Hard Disk','id':'HD','selected':0,'prices':[{'size':'200GB','price':'2000'},{'size':'400GB','price':'4000'}]},
         {'item':'CPU','id':'CPU','selected':0,'prices':[{'size':'i3','price':'20000'},{'size':'i5','price':'25000'}]},
@@ -63,9 +84,15 @@ cart.controller('CartCtrl', ['$scope',function($scope) {
     for (var k in $scope.shopData) {
         t += parseInt($scope.shopData[k].selected);
     }
- 
+    CommonProp.setTotal(t);
     return t;
  
 };
+$scope.$watch('shopData',function(){
+      CommonProp.setItem($scope.shopData);
+    });
+if (CommonProp.getItems() != '') {
+    $scope.shopData = CommonProp.getItems();
+}
      
 }]);
