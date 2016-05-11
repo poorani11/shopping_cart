@@ -1,7 +1,8 @@
 'use strict';
- 
+//MODULES 
 var cart = angular.module('cart', ['ngRoute'])
  
+ //ROUTES
 cart.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/cart', {
     templateUrl: 'public/cart/cart.html',
@@ -9,6 +10,8 @@ cart.config(['$routeProvider', function($routeProvider) {
   });
 }]);
 
+
+//DIRECTIVES
 cart.directive('checkList', function() {
     return {
         restrict: 'E',
@@ -26,7 +29,25 @@ cart.directive('checkList', function() {
         }
     };
 });
+
+cart.directive('getScroll', function($window) {
+    return {
+        scope: {
+            scroll: '=scroll'
+        },
+        link: function(scope, element, attrs) {
  
+            var scrollwindow = angular.element($window);
+ 
+            scrollwindow.on('scroll', scope.$apply.bind(scope, function() {
+                scope.scroll = scrollwindow.scrollTop();
+            }));
+ 
+        }
+    };
+});
+
+//CONTROLLERS 
 cart.controller('CartCtrl', ['$scope',function($scope) {
     $scope.shopData = [
         {'item':'Hard Disk','id':'HD','selected':0,'prices':[{'size':'200GB','price':'2000'},{'size':'400GB','price':'4000'}]},
