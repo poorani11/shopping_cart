@@ -14,12 +14,13 @@ cart.directive('checkList', function() {
         restrict: 'E',
         scope: {
             option: '=',
-            name: '='
+            name: '=',
+            selected: '=selected'
         },
         template: function(elem, attrs) {
             return '<div class="panel-body">\
                         <div class="radio" ng-repeat="i in option">\
-                            <label><input type="radio" name="{{name}}">{{i.size}} Rs.{{i.price}}</label>\
+                            <label><input type="radio" ng-model="$parent.selected" ng-value="{{i.price}}"  name="{{name}}">{{i.size}} Rs.{{i.price}}</label>\
                         </div>\
                     </div>'
         }
@@ -35,5 +36,15 @@ cart.controller('CartCtrl', ['$scope',function($scope) {
         {'item':'RAM','id':'RM','selected':0,'prices':[{'size':'4GB','price':'4000'},{'size':'8GB','price':'8000'}]},
         {'item':'USB Keyboard','id':'KEY','selected':0,'prices':[{'size':'Standard','price':'2500'},{'size':'Advanced','price':'4500'}]}
     ];
+    $scope.total = function() {
+    var t = 0;
+ 
+    for (var k in $scope.shopData) {
+        t += parseInt($scope.shopData[k].selected);
+    }
+ 
+    return t;
+ 
+};
      
 }]);
